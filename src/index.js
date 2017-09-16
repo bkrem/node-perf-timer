@@ -1,26 +1,29 @@
-const _prettyPrint = (initial, elapsed, precision, note) => {
-  console.log('************************');
-  console.log('*   PERF MEASUREMENT   *');
-  console.log('************************');
-  console.log();
-  console.log(
-    `${process.hrtime(initial)[0]} s, ${elapsed.toFixed(
-      precision,
-    )} ms - ${note}`,
-  );
-  console.log();
-  console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^');
+const logger = require('./utils/logger');
+const units = require('./utils/units');
+
+let initial = [];
+const opts = {
+  shouldPrint: false,
+  precision: 3, // 3 decimal places
 };
 
+function config(userOpts) {
+  Object.assign(opts, userOpts);
+}
+
 function start() {
-  process.hrtime();
+  initial = process.hrtime();
+  return units.tupleToNano(initial);
 }
 
-function stop(initial, note, shouldPrint = true) {
-  const precision = 3; // 3 decimal places
-  const elapsed = process.hrtime(initial)[1] / 1000000; // divide by a million to get nano to milli
-  shouldPrint && _prettyPrint(initial, elapsed, precision, note); // Pretty-print result to console
-  return elapsed;
+function stop(note = '') {
+  const diff = process.hrtime(initial);
+  const elapsed = diff[1] / 1000000; // divide by a million to get nano to milli
+  if (opts.shouldPrint) {
+    logger.prettyPrint(initial, elapsed, opts.precision, note); // Pretty-print result to console
+  }
+  return units.tupleToNano(diff);
 }
 
-module.exports = { start, stop };
+const perfTimer = { config, start, stop };
+module.exports = perfTimer;
