@@ -1,0 +1,23 @@
+language: node_js
+
+node_js:
+  - 8
+  - 7
+  - 6
+  - 5
+  - 4
+
+script:
+  - npm run test
+  - npm run build
+
+notifications:
+  email:
+    on_success: change
+    on_failure: always
+
+after_success: 'npm run coveralls'
+
+cache:
+  directories:
+    - node_modules

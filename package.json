@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "precommit": "lint-staged"
+    "test": "jest --coverage --verbose",
+    "test:watch": "jest --watchAll",
+    "precommit": "lint-staged",
+    "coveralls": "cat ./coverage/lcov.info | coveralls"
   },
   "lint-staged": {
     "src/**/*.js": [
@@ -13,6 +15,20 @@
       "prettier --write --single-quote --trailing-comma=all",
       "git add"
     ]
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "statements": 95,
+        "branches": 84,
+        "functions": 90,
+        "lines": 95
+      }
+    }
   },
   "repository": {
     "type": "git",
@@ -25,6 +41,7 @@
   },
   "homepage": "https://github.com/bkrem/node-perf-timer#readme",
   "devDependencies": {
+    "coveralls": "^2.13.1",
     "eslint": "^4.7.0",
     "eslint-config-airbnb-base": "^12.0.0",
     "eslint-config-prettier": "^2.5.0",

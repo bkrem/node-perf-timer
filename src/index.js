@@ -23,4 +23,4 @@ function stop(initial, note, shouldPrint = true) {
   return elapsed;
 }
 
-export default { start, stop };
+module.exports = { start, stop };
