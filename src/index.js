@@ -1,10 +1,11 @@
 const logger = require('./utils/logger');
 const units = require('./utils/units');
 
-let initial = [];
+let startTuple = [];
+let stopTuple = [];
+
 const opts = {
-  shouldPrint: false,
-  precision: 3, // 3 decimal places
+  shouldPrint: true,
 };
 
 function config(userOpts) {
@@ -12,18 +13,33 @@ function config(userOpts) {
 }
 
 function start() {
-  initial = process.hrtime();
-  return units.tupleToNano(initial);
+  startTuple = process.hrtime();
+  return units.tupleToNano(startTuple);
 }
 
-function stop(note = '') {
-  const diff = process.hrtime(initial);
-  const elapsed = diff[1] / 1000000; // divide by a million to get nano to milli
+function stop() {
+  stopTuple = process.hrtime();
+  return units.tupleToNano(stopTuple);
+}
+
+function diff(startTime, endTime) {
+  return endTime - startTime;
+}
+
+function stopAndDiff() {
+  const diffTuple = process.hrtime(startTuple);
+  const diffNano = units.tupleToNano(diffTuple);
   if (opts.shouldPrint) {
-    logger.prettyPrint(initial, elapsed, opts.precision, note); // Pretty-print result to console
+    logger.print2(diffTuple, opts.precision, ''); // Pretty-print result to console
   }
-  return units.tupleToNano(diff);
+  return diffNano;
 }
 
-const perfTimer = { config, start, stop };
+function stopAndRestart() {
+  const diffNano = stop();
+  start();
+  return diffNano;
+}
+
+const perfTimer = { config, start, stop, diff, stopAndDiff, stopAndRestart };
 module.exports = perfTimer;

@@ -1,6 +1,8 @@
 /* eslint no-console: 0 */
 
-function prettyPrint(initial, elapsed, precision, note) {
+const units = require('./units');
+
+function print(initial, elapsed, precision, note) {
   console.log('************************');
   console.log('*   PERF MEASUREMENT   *');
   console.log('************************');
@@ -14,5 +16,13 @@ function prettyPrint(initial, elapsed, precision, note) {
   console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^');
 }
 
-const logger = { prettyPrint };
+function print2(diffTuple, precision = undefined, note) {
+  const s = diffTuple[0];
+  const ms = precision
+    ? units.nanoToMilli(diffTuple[1]).toFixed(precision)
+    : units.nanoToMilli(diffTuple[1]);
+  console.log(`${s} s, ${ms} ms - ${note}`);
+}
+
+const logger = { print, print2 };
 module.exports = logger;

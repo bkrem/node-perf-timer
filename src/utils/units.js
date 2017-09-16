@@ -4,5 +4,9 @@ function tupleToNano(tuple) {
   return tuple[0] * NS_PER_SEC + tuple[1];
 }
 
-const units = { tupleToNano };
+function nanoToMilli(ns) {
+  return ns / 1000000;
+}
+
+const units = { tupleToNano, nanoToMilli };
 module.exports = units;
