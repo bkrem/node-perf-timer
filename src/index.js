@@ -30,7 +30,7 @@ function stopAndDiff() {
   const diffTuple = process.hrtime(startTuple);
   const diffNano = units.tupleToNano(diffTuple);
   if (opts.shouldPrint) {
-    logger.print2(diffTuple, opts.precision, ''); // Pretty-print result to console
+    logger.printDiff(diffTuple, opts.precision, ''); // Pretty-print result to console
   }
   return diffNano;
 }
