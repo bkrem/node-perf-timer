@@ -26,11 +26,11 @@ function diff(startTime, endTime) {
   return endTime - startTime;
 }
 
-function stopAndDiff() {
+function stopAndDiff(message) {
   const diffTuple = process.hrtime(startTuple);
   const diffNano = units.tupleToNano(diffTuple);
   if (opts.shouldPrint) {
-    logger.printDiff(diffTuple, opts.precision, ''); // Pretty-print result to console
+    logger.printDiff(diffTuple, opts.precision, message); // Pretty-print result to console
   }
   return diffNano;
 }
