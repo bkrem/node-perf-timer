@@ -6,6 +6,8 @@ let stopTuple = [];
 
 const opts = {
   shouldPrint: true,
+  precision: undefined,
+  message: undefined,
 };
 
 function config(userOpts) {
@@ -30,7 +32,7 @@ function stopAndDiff(message) {
   const diffTuple = process.hrtime(startTuple);
   const diffNano = units.tupleToNano(diffTuple);
   if (opts.shouldPrint) {
-    logger.printDiff(diffTuple, opts.precision, message); // Pretty-print result to console
+    logger.printDiff(diffTuple, opts.precision, message || opts.message); // Pretty-print result to console
   }
   return diffNano;
 }
@@ -41,5 +43,13 @@ function stopAndRestart() {
   return diffNano;
 }
 
-const perfTimer = { config, start, stop, diff, stopAndDiff, stopAndRestart };
+const perfTimer = {
+  opts,
+  config,
+  start,
+  stop,
+  diff,
+  stopAndDiff,
+  stopAndRestart,
+};
 module.exports = perfTimer;
