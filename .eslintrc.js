@@ -10,6 +10,6 @@ module.exports = {
   },
   "rules": {
     "no-underscore-dangle": 0,
-    "no-unused-expressions": 1,
+    "no-unused-expressions": 0,
   }
 };
