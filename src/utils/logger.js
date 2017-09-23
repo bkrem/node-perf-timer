@@ -1,6 +1,4 @@
 /* eslint no-console: 0 */
-const chalk = require('chalk');
-
 const units = require('./units');
 
 function printDiff(diffTuple, precision = undefined, msg) {
@@ -10,15 +8,8 @@ function printDiff(diffTuple, precision = undefined, msg) {
     : units.nanoToMilli(diffTuple[1]);
 
   console.log();
-  msg &&
-    console.log(
-      chalk.magenta(`${chalk.magenta.underline.bold('Message')}: ${msg}`),
-    );
-  console.log(
-    `${chalk.cyan.underline.bold('Duration')}: ${chalk.red.bold(
-      `${s} s`,
-    )}, ${chalk.yellow(`${ms} ms`)}`,
-  );
+  msg && console.log(`Message: ${msg}`);
+  console.log(`Duration: ${s} s, ${ms} ms`);
   console.log();
 }
 
