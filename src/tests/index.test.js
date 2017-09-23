@@ -1,14 +1,16 @@
 const perfTimer = require('../index');
 
+const initialState = Object.assign({}, perfTimer.opts);
+
 describe('perfTimer', () => {
   jest.spyOn(process, 'hrtime');
   afterEach(() => jest.clearAllMocks());
+  afterEach(() => perfTimer.config(initialState));
 
   describe('.config(configObj)', () => {
     it('allows the user to modify the default configuration', () => {
       perfTimer.config({ precision: 99 });
       expect(perfTimer.opts.precision).toBe(99);
-      perfTimer.config({ precision: undefined });
     });
   });
 
