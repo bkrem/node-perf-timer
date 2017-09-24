@@ -1,3 +1,5 @@
+'use strict';
+
 const logger = require('./utils/logger');
 const units = require('./utils/units');
 

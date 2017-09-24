@@ -5,11 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "test:cov": "jest --coverage",
     "test:watch": "jest --watchAll",
+    "test:cov": "jest --coverage",
     "show:cov": "open coverage/lcov-report/index.html",
     "precommit": "lint-staged",
     "coveralls": "cat ./coverage/lcov.info | coveralls"
+  },
+  "engines": {
+    "node": ">=4"
   },
   "lint-staged": {
     "src/**/*.js": [
