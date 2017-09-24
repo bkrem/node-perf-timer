@@ -1,16 +1,18 @@
 const perfTimer = require('../index');
+const logger = require('../utils/logger');
 
 const initialState = Object.assign({}, perfTimer.opts);
 
 describe('perfTimer', () => {
   jest.spyOn(process, 'hrtime');
+  jest.spyOn(logger, 'printDiff');
   afterEach(() => jest.clearAllMocks());
   afterEach(() => perfTimer.config(initialState));
 
   describe('.config(configObj)', () => {
     it('allows the user to modify the default configuration', () => {
-      perfTimer.config({ precision: 99 });
-      expect(perfTimer.opts.precision).toBe(99);
+      perfTimer.config({ precision: Infinity });
+      expect(perfTimer.opts.precision).toBe(Infinity);
     });
   });
 
@@ -42,10 +44,28 @@ describe('perfTimer', () => {
   });
 
   describe('.stopAndDiff(message)', () => {
-    it('returns a diff relative to the last `start()` call', () => {
+    it('prints & returns a diff relative to the last `start()` call', () => {
       perfTimer.start();
       const diff = perfTimer.stopAndDiff();
       expect(diff).toBeGreaterThan(0);
+      expect(logger.printDiff).toHaveBeenCalledTimes(1);
+    });
+
+    it('does not log to the console when `opts.shouldPrint` is `false`', () => {
+      perfTimer.config({ shouldPrint: false });
+      perfTimer.start();
+      const diff = perfTimer.stopAndDiff();
+      expect(diff).toBeGreaterThan(0);
+      expect(logger.printDiff).toHaveBeenCalledTimes(0);
+    });
+  });
+
+  describe('.stopAndRestart()', () => {
+    it('stops current timer, starts a new one, returns diff of the stopped timer', () => {
+      perfTimer.start();
+      const diff = perfTimer.stopAndRestart();
+      expect(diff).toBeGreaterThan(0);
+      expect(process.hrtime).toHaveBeenCalledTimes(3);
     });
   });
 });
