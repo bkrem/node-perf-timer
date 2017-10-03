@@ -38,8 +38,23 @@ functionToBeMeasured();
 const nsDiff = perfTimer.stopAndDiff('functionToBeMeasured()');
 ```
 
+## Configuration
+By default, the configuration object takes the following shape:
+```js
+const opts = {
+  shouldPrint: true, // should diffs be logged to the console?
+  precision: undefined, // e.g. `4`; how many decimal places to use for millisecond formatting
+  message: undefined, // e.g. `"hello bottleneck!"`; default message for each diff being logged
+};
+```
+
 ## API
-[API Documentation](/docs/index.md)
+* `.config(configObj)` - Adjust default opts for all future `perfTimer` calls.
+* `.start()` - Starts a new timer and returns the absolute start time in nanoseconds.
+* `.stop()` - Stops the current timer and returns the absolute end time in nanoseconds.
+* ``
+* ``
+[Full API Documentation](/docs/index.md)
 
 
 ## Examples
