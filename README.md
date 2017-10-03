@@ -38,4 +38,8 @@ const nsDiff = perfTimer.stopAndDiff('functionToBeMeasured()');
 ```
 
 ## Examples
-Examples for a number of use cases can be found [here](/examples).
+Examples for a number of common use cases can be found [here](/examples).
+
+
+## License
+MIT
