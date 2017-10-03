@@ -38,6 +38,10 @@ functionToBeMeasured();
 const nsDiff = perfTimer.stopAndDiff('functionToBeMeasured()');
 ```
 
+## API
+[API Documentation](/docs/index.md)
+
+
 ## Examples
 Examples for a number of common use cases can be found [here](/examples).
 
