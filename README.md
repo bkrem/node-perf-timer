@@ -49,16 +49,18 @@ const opts = {
 ```
 
 ## API
-* `.config(configObj)` - Adjust default opts for all future `perfTimer` calls.
-* `.start()` - Starts a new timer and returns the absolute start time in nanoseconds.
-* `.stop()` - Stops the current timer and returns the absolute end time in nanoseconds.
-* ``
-* ``
+* `config(configObj)` - Adjust default opts for all future `perfTimer` calls.
+* `start()` - Starts a new timer and returns the absolute start time in nanoseconds.
+* `stop()` - Stops the current timer and returns the absolute end time in nanoseconds.
+* `diff(nsStartTime, nsEndTime)` - Accepts a start & end time in nanoseconds and returns the difference.
+* `stopAndDiff(message?)` - Combines stop() & diff(). If `opts.shouldPrint` is set, the diff is logged to the console with `message`, `opts.message` or simply the duration.
+* `stopAndRestart()` - Stops timer, starts a new one and returns the nanosecond diff of the stopped timer.
+
 [Full API Documentation](/docs/index.md)
 
 
 ## Examples
-Examples for a number of common use cases can be found [here](/examples).
+Examples for a number of common use cases can be found [here (WIP)](/examples).
 
 
 ## License
