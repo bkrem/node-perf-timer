@@ -1,4 +1,4 @@
-# node-perf-timer [![Build Status](https://travis-ci.org/bkrem/node-perf-timer.svg?branch=master)](https://travis-ci.org/bkrem/node-perf-timer)
+# node-perf-timer [![Build Status](https://travis-ci.org/bkrem/node-perf-timer.svg?branch=master)](https://travis-ci.org/bkrem/node-perf-timer) [![Coverage Status](https://coveralls.io/repos/github/bkrem/node-perf-timer/badge.svg)](https://coveralls.io/github/bkrem/node-perf-timer)
 
 
 Measuring elapsed time in Node, made simple.
