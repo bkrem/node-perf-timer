@@ -14,8 +14,8 @@ const opts = {
 
 /**
  * config - Accepts a config object to adjust default settings.
- * 
- * @param {any} userOpts
+ *
+ * @param {object} userOpts
  * @returns {void}
  */
 function config(userOpts) {
@@ -24,7 +24,7 @@ function config(userOpts) {
 
 /**
  * start - Starts a new timer and returns the absolute start time.
- * 
+ *
  * @returns {number} nsStartTime
  */
 function start() {
@@ -34,7 +34,7 @@ function start() {
 
 /**
  * stop - Stops the current timer and returns the absolute end time.
- * 
+ *
  * @returns {number} nsEndTime
  */
 function stop() {
@@ -44,9 +44,9 @@ function stop() {
 
 /**
  * diff - Accepts a start & end time in nanoseconds and returns the difference.
- * 
- * @param {number} nsStartTime 
- * @param {number} nsEndTime 
+ *
+ * @param {number} nsStartTime
+ * @param {number} nsEndTime
  * @returns {number} nsDiff
  */
 function diff(nsStartTime, nsEndTime) {
@@ -55,9 +55,9 @@ function diff(nsStartTime, nsEndTime) {
 
 /**
  * stopAndDiff - Combines stop() & diff().
- * If `opts.shouldPrint` is set, the diff is logged to the console 
+ * If `opts.shouldPrint` is set, the diff is logged to the console
  * with `message` (if specified).
- * 
+ *
  * @param {string} message Optional message for logging.
  * @returns {number} nsDiff
  */
@@ -73,7 +73,7 @@ function stopAndDiff(message) {
 /**
  * stopAndRestart - Stops timer, starts a new one and returns the nanosecond
  * diff of the stopped timer.
- * 
+ *
  * @returns {number} nsDiff
  */
 function stopAndRestart() {

@@ -8,6 +8,7 @@
     "test:watch": "jest --watchAll",
     "test:cov": "jest --coverage",
     "show:cov": "open coverage/lcov-report/index.html",
+    "docs": "jsdoc2md src/index.js > docs/index.md",
     "precommit": "lint-staged",
     "coveralls": "cat ./coverage/lcov.info | coveralls"
   },

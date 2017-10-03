@@ -15,7 +15,7 @@
 </dd>
 <dt><a href="#stopAndDiff">stopAndDiff(message)</a> ⇒ <code>number</code></dt>
 <dd><p>stopAndDiff - Combines stop() &amp; diff().
-If <code>opts.shouldPrint</code> is set, the diff is logged to the console 
+If <code>opts.shouldPrint</code> is set, the diff is logged to the console
 with <code>message</code> (if specified).</p>
 </dd>
 <dt><a href="#stopAndRestart">stopAndRestart()</a> ⇒ <code>number</code></dt>
@@ -33,7 +33,7 @@ config - Accepts a config object to adjust default settings.
 
 | Param | Type |
 | --- | --- |
-| userOpts | <code>any</code> | 
+| userOpts | <code>object</code> | 
 
 <a name="start"></a>
 
@@ -66,7 +66,7 @@ diff - Accepts a start & end time in nanoseconds and returns the difference.
 
 ## stopAndDiff(message) ⇒ <code>number</code>
 stopAndDiff - Combines stop() & diff().
-If `opts.shouldPrint` is set, the diff is logged to the console 
+If `opts.shouldPrint` is set, the diff is logged to the console
 with `message` (if specified).
 
 **Kind**: global function  
