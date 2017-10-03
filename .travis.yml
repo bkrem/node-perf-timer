@@ -8,8 +8,7 @@ node_js:
   - 4
 
 script:
-  - npm run test
-  - npm run build
+  - npm run test:cov
 
 notifications:
   email:
