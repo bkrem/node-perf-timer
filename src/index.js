@@ -56,7 +56,7 @@ function diff(nsStartTime, nsEndTime) {
 /**
  * stopAndDiff - Combines stop() & diff().
  * If `opts.shouldPrint` is set, the diff is logged to the console
- * with `message` (if specified).
+ * with `message` or `opts.defaultMessage` (if specified).
  *
  * @param {string} message Optional message for logging.
  * @returns {number} nsDiff
