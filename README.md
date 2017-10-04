@@ -44,7 +44,7 @@ By default, the configuration object takes the following shape:
 const opts = {
   shouldPrint: true, // should diffs be logged to the console?
   precision: undefined, // e.g. `4`; how many decimal places to use for millisecond formatting
-  message: undefined, // e.g. `"hello bottleneck!"`; default message for each diff being logged
+  defaultMessage: undefined, // e.g. `"hello bottleneck!"`; default message for each diff being logged
 };
 ```
 
@@ -53,7 +53,7 @@ const opts = {
 * `start()` - Starts a new timer and returns the absolute start time in nanoseconds.
 * `stop()` - Stops the current timer and returns the absolute end time in nanoseconds.
 * `diff(nsStartTime, nsEndTime)` - Accepts a start & end time in nanoseconds and returns the difference.
-* `stopAndDiff(message?)` - Combines stop() & diff(). If `opts.shouldPrint` is set, the diff is logged to the console with `message`, `opts.message` or simply the duration.
+* `stopAndDiff(message?)` - Combines stop() & diff(). If `opts.shouldPrint` is set, the diff is logged to the console with `message`, `opts.defaultMessage` or simply the duration.
 * `stopAndRestart()` - Stops timer, starts a new one and returns the nanosecond diff of the stopped timer.
 
 [Full API Documentation](/docs/index.md)

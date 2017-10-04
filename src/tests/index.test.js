@@ -2,6 +2,14 @@ const perfTimer = require('../index');
 const logger = require('../utils/logger');
 
 const initialState = Object.assign({}, perfTimer.opts);
+const hrMockReturn = [123, 456];
+const mockProcess = testFn => {
+  const hrTime = process.hrtime;
+  process.hrtime = () => hrMockReturn;
+  testFn();
+  process.hrtime = hrTime;
+  jest.spyOn(process, 'hrtime');
+};
 
 describe('perfTimer', () => {
   jest.spyOn(process, 'hrtime');
@@ -48,7 +56,36 @@ describe('perfTimer', () => {
       perfTimer.start();
       const diff = perfTimer.stopAndDiff();
       expect(diff).toBeGreaterThan(0);
-      expect(logger.printDiff).toHaveBeenCalledTimes(1);
+    });
+
+    it('prints `opts.defaultMessage` if no `message` param is supplied', () => {
+      mockProcess(() => {
+        const fixture = 'hello world';
+        perfTimer.config({ defaultMessage: fixture });
+        perfTimer.start();
+        perfTimer.stopAndDiff();
+        expect(logger.printDiff).toHaveBeenCalledTimes(1);
+        expect(logger.printDiff).toHaveBeenCalledWith(
+          hrMockReturn,
+          undefined,
+          fixture,
+        );
+      });
+    });
+
+    it('prints `message` param if supplied instead of `opts.defaultMessage`', () => {
+      mockProcess(() => {
+        const fixture = 'i should be printed';
+        perfTimer.config({ defaultMessage: 'i should not be printed' });
+        perfTimer.start();
+        perfTimer.stopAndDiff(fixture);
+        expect(logger.printDiff).toHaveBeenCalledTimes(1);
+        expect(logger.printDiff).toHaveBeenCalledWith(
+          hrMockReturn,
+          undefined,
+          fixture,
+        );
+      });
     });
 
     it('does not log to the console when `opts.shouldPrint` is `false`', () => {

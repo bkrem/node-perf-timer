@@ -9,7 +9,7 @@ let stopTuple = [];
 const opts = {
   shouldPrint: true,
   precision: undefined,
-  message: undefined,
+  defaultMessage: undefined,
 };
 
 /**
@@ -65,7 +65,8 @@ function stopAndDiff(message) {
   const diffTuple = process.hrtime(startTuple);
   const nsDiff = units.tupleToNano(diffTuple);
   if (opts.shouldPrint) {
-    logger.printDiff(diffTuple, opts.precision, message || opts.message); // Pretty-print result to console
+    // Pretty-print result to console
+    logger.printDiff(diffTuple, opts.precision, message || opts.defaultMessage);
   }
   return nsDiff;
 }
