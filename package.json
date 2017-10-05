@@ -14,9 +14,6 @@
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "release": "yarn lint && yarn test:cov && yarn docs && git commit -a; np"
   },
-  "engines": {
-    "node": ">=4"
-  },
   "lint-staged": {
     "src/**/*.js": [
       "eslint",
